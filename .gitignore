@@ -1,0 +1,42 @@
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+logs/
+
+# IDE specific files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build files
+dist/
+build/
+
+# Cache
+.cache/
+
+# Debug files
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Optional nyc test coverage
+.nyc_output
+coverage/

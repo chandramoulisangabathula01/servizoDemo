@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --header-height: 4rem;
+        }
+        /* Add custom animations */
+        @keyframes bounceIn {
+            0% { transform: translateY(-100px); }
+            50% { transform: translateY(20px); }
+            100% { transform: translateY(0); }
+        }
+        .bounce-in {
+            animation: bounceIn 1s ease-out;
+        }
+        .nav-link {
+            transition: transform 0.2s ease;
+        }
+        .nav-link:hover {
+            transform: scale(1.1);
+        }
+        /* Add these new styles */
+        .mobile-menu-button {
+            transition: all 0.3s ease;
+        }
+        .mobile-menu-button.active svg {
+            transform: rotate(90deg);
+        }
+        #mobileMenu {
+            transition: all 0.3s ease;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+        }
+        #mobileMenu.open {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: black;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <header class="bg-yellow-50 shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-4 flex justify-between items-center">
+            <!-- Mobile Menu Button -->
+            <div class="flex items-center lg:hidden">
+                <button onclick="toggleMenu()" class="mobile-menu-button text-black hover:text-yellow-600 focus:outline-none mr-4" aria-label="Menu">
+                    <svg class="h-6 w-6 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <a href="/" class="flex items-center">
+                    <h2 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-black">Servizo.</h2>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center justify-between w-full space-x-6 xl:space-x-12">
+                <a href="/" class="flex items-center">
+                    <h2 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-black">Servizo.</h2>
+                </a>
+                <div class="flex items-center space-x-6 xl:space-x-12">
+                    <ul class="flex space-x-6">
+                        <li><a href="/" class="nav-link text-sm lg:text-base xl:text-lg text-black hover:text-yellow-600 font-semibold">Home</a></li>
+                        <li><a href="/services.html" class="nav-link text-sm lg:text-base xl:text-lg text-black hover:text-yellow-600 font-semibold">Services</a></li>
+                        <li><a href="/about-us.html" class="nav-link text-sm lg:text-base xl:text-lg text-black hover:text-yellow-600 font-semibold">About Us</a></li>
+                        <li><a href="/career.html" class="nav-link text-sm lg:text-base xl:text-lg text-black hover:text-yellow-600 font-semibold">Careers</a></li>
+
+                    </ul>
+                    <a href="contact.html" class="inline-flex hover:border-yellow-200 items-center justify-center border-2 border-black rounded-md py-2 px-4 lg:py-3 lg:px-6 bg-yellow-200 text-black hover:text-white hover:bg-black transition-all duration-200 ease-in-out transform hover:scale-105">
+                        <span class="flex flex-col items-start leading-none">
+                            <p class="text-base lg:text-lg xl:text-xl font-bold">Contact Us</p>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Download Button -->
+            <div class="lg:hidden">
+                <a href="contact.html" class="inline-flex items-center justify-center border-2 border-yellow-600 rounded-md py-2 px-4 bg-yellow-600 text-white hover:bg-yellow-700 hover:border-yellow-700 transition-all duration-200 ease-in-out transform hover:scale-105">
+                    <span class="flex flex-col items-start leading-none">
+                        <p class="text-sm font-bold">Contact Us</p>
+                    </span>
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden bg-white fixed top-16 left-0 right-0 shadow-lg">
+            <div class="px-4 pt-2 pb-3 space-y-1">
+                <ul class="flex flex-col space-y-2">
+                    <li><a href="/" class="nav-link block text-sm text-black hover:text-yellow-600 font-medium py-2">Home</a></li>
+                    <li><a href="/services.html" class="nav-link block text-sm text-black hover:text-yellow-600 font-medium py-2">Services</a></li>
+                    <li><a href="/about-us.html" class="nav-link block text-sm text-black hover:text-yellow-600 font-medium py-2">About Us</a></li>
+                    <li><a href="/career.html" class="nav-link block text-sm text-black hover:text-yellow-600 font-medium py-2">Careers</a></li>
+                    <li><a href="/contact.html" class="nav-link block text-sm text-black hover:text-yellow-600 font-medium py-2">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="flex items-center justify-center p-4 bg-yellow-50">
+        <div class="w-full max-w-4xl bg-yellow-200 rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
+            <!-- Form Section -->
+            <div class="lg:w-1/2 p-6 lg:p-8 space-y-4">
+                <div class="text-center">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Contact Us</h1>
+                    <p class="text-gray-600 text-sm">We're here to help. Send us a message and we'll get back to you soon.</p>
+                </div>
+                <form class="space-y-0">
+                    <div class="space-y-4">
+                        <input type="text" name="name" placeholder="Full Name" required 
+                               class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
+                        <input type="tel" name="number" placeholder="Phone Number" required 
+                               class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
+                        <input type="email" name="email" placeholder="Email Address" required 
+                               class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
+                        <textarea name="message" placeholder="Your Message" required 
+                                  class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" rows="3"></textarea>
+                    </div>
+                    <button type="submit" 
+                            class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Send Message
+                    </button>
+                </form>
+                <div class="mt-4 text-center space-y-1">
+                    <p class="text-gray-600 text-sm">Or reach us directly:</p>
+                    <div class="space-y-1">
+                        <p class="text-gray-800 font-medium text-sm">📧 info@company.com</p>
+                        <p class="text-gray-800 font-medium text-sm">📞 +123 456 7890</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Section -->
+            <div class="hidden lg:block lg:w-1/2 bg-yellow-200 p-12">
+                <div class="h-full flex flex-col justify-center items-center text-black space-y-6">
+                    <img src="/contactimagewebp.webp" alt="Contact Image" class="w-full h-auto rounded-lg ">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">We're Here to Help</h3>
+                        <p class="text-black">Our team is ready to assist you with any questions or concerns.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="bg-yellow-200 text-black py-8">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div>
+              <h3 class="text-xl font-bold mb-4 text-black">Quick Links</h3>
+              <ul class="space-y-2">
+                <li><a href="/about-us.html" class="hover:text-yellow-300 transition-colors">About Us</a></li>
+                <li><a href="/privacy.html" class="hover:text-yellow-300 transition-colors">Privacy Policy</a></li>
+                <li><a href="/terms.html" class="hover:text-yellow-300 transition-colors">Terms of Service</a></li>
+                <li><a href="/contact.html" class="hover:text-yellow-300 transition-colors">Contact Us</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-4 text-black">Join Our Community</h3>
+              <div class="flex space-x-6">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="group" aria-label="Facebook">
+                  <div class="w-12 h-12 flex items-center justify-center transition-all duration-300 group-hover:bg-yellow-300">
+                    <img src="fb.svg" alt="Facebook" class="w-12 h-12 filter group-hover:invert">
+                  </div>
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="group" aria-label="Twitter">
+                  <div class="w-12 h-12  flex items-center justify-center transition-all duration-300 group-hover:bg-yellow-300">
+                    <img src="x.svg" alt="Twitter" class="w-12 h-12 filter group-hover:invert">
+                  </div>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="group" aria-label="Instagram">
+                  <div class="w-12 h-12  flex items-center justify-center transition-all duration-300 group-hover:bg-yellow-300">
+                    <img src="instagram.svg" alt="Instagram" class="w-12 h-12 filter group-hover:invert">
+                  </div>
+                </a>
+              </div>
+              <p class="mt-4 text-sm text-gray-700">Connect with us for updates and offers</p>
+            </div>
+            <div>
+              <!-- <h3 class="text-xl font-bold mb-4 text-yellow-200">Download Our App</h3>
+              <div class="flex flex-col space-y-2">
+                <a href="https://apps.apple.com/your-app" class="inline-block">
+                  <img src="/apple_badge.png" alt="Download on App Store" width="120" height="40">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=your-app" class="inline-block">
+                  <img src="/google_badge.png" alt="Get it on Google Play" width="135" height="40">
+                </a>
+              </div> -->
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-4 text-yellow-200">Newsletter</h3>
+              <form class="flex flex-col space-y-2">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  class="px-3 py-2 bg-gray-100 text-gray-800 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-200"
+                />
+                <button
+                  type="submit"
+                  class="bg-black hover:bg-yellow-300 text-black px-4 py-2 rounded transition-colors"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="mt-8 text-center text-sm text-black">
+            <p>&copy; 2024 Servizo. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+  
+    <script>
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = document.querySelector('.mobile-menu-button');
+            mobileMenu.classList.toggle('open');
+            menuButton.classList.toggle('active');
+        }
+    </script>
+
+    
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+</body>
+</html>
