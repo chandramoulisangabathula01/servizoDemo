@@ -258,7 +258,7 @@
         const captcha = generateCaptcha();
         document.getElementById('captchaQuestion').textContent = captcha.question;
 
-        document.getElementById("chefApplicationForm").addEventListener("submit", function(event) {
+        document.getElementById("chefApplicationForm").addEventListener("submit", async function(event) {
             event.preventDefault();
 
             // Validate CAPTCHA
@@ -268,7 +268,8 @@
                 return;
             }
 
-            const data = {
+            // Prepare form data
+            const formData = {
                 name: document.getElementById("name").value,
                 dob: document.getElementById("dob").value,
                 contactNumber: document.getElementById("phone").value,
@@ -279,28 +280,28 @@
                 consentForBackgroundCheck: document.querySelector('input[name="backgroundCheck"]').checked
             };
 
-            fetch("/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
+            try {
+                const response = await fetch('https://servizobackend.onrender.com/api/chefs', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                });
+
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Network response was not ok');
                 }
-                return response.json();
-            })
-            .then(result => {
+
+                const result = await response.json();
                 alert("Application submitted successfully!");
                 console.log("Server response:", result);
                 document.getElementById("chefApplicationForm").reset();
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error("Error submitting form:", error);
                 alert("There was an error submitting your application. Please try again.");
-            });
+            }
         });
 
         function toggleMenu() {
