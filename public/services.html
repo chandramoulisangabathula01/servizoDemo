@@ -311,6 +311,28 @@
         </div>
       </footer>
 
+    <div id="cookieConsent" class="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 hidden">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex-1">
+                <p class="text-sm text-gray-700">
+                    We use cookies to enhance your experience. By continuing to visit this site, you agree to our use of cookies.
+                    <a href="/privacy.html" class="text-yellow-600 hover:text-yellow-700">Learn more</a>
+                </p>
+            </div>
+            <div class="flex gap-2">
+                <button id="rejectCookies" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded hover:bg-gray-200">
+                    Reject
+                </button>
+                <button id="acceptCookies" class="px-4 py-2 text-sm font-medium text-white bg-yellow-600 rounded hover:bg-yellow-700">
+                    Accept
+                </button>
+                <button id="customizeCookies" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded hover:bg-gray-200">
+                    Customize
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
       // Mobile menu toggle
       function toggleMenu() {
@@ -343,5 +365,6 @@
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="cookies.js"></script>
 </body>
 </html>

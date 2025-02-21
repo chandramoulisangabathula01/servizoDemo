@@ -80,6 +80,20 @@ app.post('/api/newsletter', async (req, res) => {
   }
 });
 
+// Route to handle cookie preferences
+app.post('/api/cookies/preferences', async (req, res) => {
+    try {
+        const { sessionId, accepted, preferences } = req.body;
+        // Save preferences to database or perform necessary actions
+        console.log('Received cookie preferences:', { sessionId, accepted, preferences });
+        
+        res.status(200).json({ success: true });
+    } catch (error) {
+        console.error('Error saving cookie preferences:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());

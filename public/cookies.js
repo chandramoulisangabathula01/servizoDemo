@@ -48,6 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function savePreferences(preferences) {
         console.log('Saving preferences:', preferences);
+        // Set a cookie to remember the user's choice
+        document.cookie = `cookie_preferences=${JSON.stringify(preferences)}; path=/; max-age=31536000`; // 1 year expiration
+        
         fetch('https://servizobackend.onrender.com/api/cookies/preferences', {
             method: 'POST',
             headers: {
