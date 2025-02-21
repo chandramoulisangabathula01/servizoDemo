@@ -199,10 +199,10 @@
     </section>
 
 
-    <footer class="bg-yellow-200 text-black py-8">
+    <footer class=" text-black py-8 border-black border-t-2" style="background-color: var(--color-bg);">
         <div class="container mx-auto px-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <div>
+            <div class="border-black border-r-2">
               <h3 class="text-xl font-bold mb-4 text-black">Quick Links</h3>
               <ul class="space-y-2">
                 <li><a href="/about-us.html" class="hover:text-yellow-300 transition-colors">About Us</a></li>
@@ -211,7 +211,7 @@
                 <li><a href="/contact.html" class="hover:text-yellow-300 transition-colors">Contact Us</a></li>
               </ul>
             </div>
-            <div>
+            <div class="">
               <h3 class="text-xl font-bold mb-4 text-black">Join Our Community</h3>
               <div class="flex space-x-6">
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="group" aria-label="Facebook">
@@ -243,23 +243,24 @@
                 </a>
               </div> -->
             </div>
-            <div>
+            <!-- <div>
               <h3 class="text-xl font-bold mb-4 text-yellow-200">Newsletter</h3>
-              <form class="flex flex-col space-y-2">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  class="px-3 py-2 bg-gray-100 text-gray-800 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-200"
-                />
-                <button
-                  type="submit"
-                  class="bg-black hover:bg-yellow-300 text-black px-4 py-2 rounded transition-colors"
-                >
-                  Subscribe
-                </button>
+              <form id="newsletterForm" class="flex flex-col space-y-2">
+                  <input
+                      type="email"
+                      id="newsletterEmail"
+                      placeholder="Enter your email"
+                      class="px-3 py-2 bg-gray-100 text-gray-800 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-200"
+                      required
+                  />
+                  <button
+                      type="submit"
+                      class="bg-black hover:bg-yellow-300 text-black px-4 py-2 rounded transition-colors"
+                  >
+                      Subscribe
+                  </button>
               </form>
-            </div>
-          </div>
+          </div> -->
           <div class="mt-8 text-center text-sm text-black">
             <p>&copy; 2024 Servizo. All rights reserved.</p>
           </div>

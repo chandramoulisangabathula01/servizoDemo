@@ -129,7 +129,7 @@
                     <h1 class="text-3xl font-bold text-gray-900 mb-2">Contact Us</h1>
                     <p class="text-gray-600 text-sm">We're here to help. Send us a message and we'll get back to you soon.</p>
                 </div>
-                <form class="space-y-0">
+                <form class="space-y-4">
                     <div class="space-y-4">
                         <input type="text" name="name" placeholder="Full Name" required 
                                class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
@@ -141,7 +141,7 @@
                                   class="w-full p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" rows="3"></textarea>
                     </div>
                     <button type="submit" 
-                            class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-400 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                         Send Message
                     </button>
                 </form>
@@ -168,10 +168,10 @@
     </div>
 
 
-    <footer class="bg-yellow-200 text-black py-8">
+    <footer class=" text-black bg-yellow-50 py-8 border-black border-t-2" >
         <div class="container mx-auto px-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <div>
+            <div class="border-black border-r-2">
               <h3 class="text-xl font-bold mb-4 text-black">Quick Links</h3>
               <ul class="space-y-2">
                 <li><a href="/about-us.html" class="hover:text-yellow-300 transition-colors">About Us</a></li>
@@ -180,7 +180,7 @@
                 <li><a href="/contact.html" class="hover:text-yellow-300 transition-colors">Contact Us</a></li>
               </ul>
             </div>
-            <div>
+            <div class="">
               <h3 class="text-xl font-bold mb-4 text-black">Join Our Community</h3>
               <div class="flex space-x-6">
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="group" aria-label="Facebook">
@@ -212,23 +212,24 @@
                 </a>
               </div> -->
             </div>
-            <div>
+            <!-- <div>
               <h3 class="text-xl font-bold mb-4 text-yellow-200">Newsletter</h3>
-              <form class="flex flex-col space-y-2">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  class="px-3 py-2 bg-gray-100 text-gray-800 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-200"
-                />
-                <button
-                  type="submit"
-                  class="bg-black hover:bg-yellow-300 text-black px-4 py-2 rounded transition-colors"
-                >
-                  Subscribe
-                </button>
+              <form id="newsletterForm" class="flex flex-col space-y-2">
+                  <input
+                      type="email"
+                      id="newsletterEmail"
+                      placeholder="Enter your email"
+                      class="px-3 py-2 bg-gray-100 text-gray-800 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-200"
+                      required
+                  />
+                  <button
+                      type="submit"
+                      class="bg-black hover:bg-yellow-300 text-black px-4 py-2 rounded transition-colors"
+                  >
+                      Subscribe
+                  </button>
               </form>
-            </div>
-          </div>
+          </div> -->
           <div class="mt-8 text-center text-sm text-black">
             <p>&copy; 2024 Servizo. All rights reserved.</p>
           </div>
