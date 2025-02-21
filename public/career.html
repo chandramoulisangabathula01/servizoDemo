@@ -52,6 +52,55 @@
             opacity: 1;
             visibility: visible;
         }
+        /* Add loading spinner styles */
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Modern alert styles */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 1.5rem 2.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            animation: fadeIn 0.3s ease-out;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .custom-alert.success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .custom-alert.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Update loading overlay styles */
+        #loadingOverlay {
+            z-index: 1001;
+        }
     </style>
 </head>
 <body class="bg-yellow-50">
@@ -259,13 +308,29 @@
         const captcha = generateCaptcha();
         document.getElementById('captchaQuestion').textContent = captcha.question;
 
+        // Helper function to show custom alert
+        function showAlert(message, type = 'success') {
+            const alert = document.createElement('div');
+            alert.className = `custom-alert ${type}`;
+            alert.textContent = message;
+            document.getElementById('customAlertContainer').appendChild(alert);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
         document.getElementById("chefApplicationForm").addEventListener("submit", async function(event) {
             event.preventDefault();
+            
+            // Show loading spinner
+            document.getElementById('loadingOverlay').classList.remove('hidden');
 
             // Validate CAPTCHA
             const userAnswer = parseInt(document.getElementById("captchaAnswer").value);
             if (userAnswer !== captcha.answer) {
-                alert("Please solve the math problem correctly.");
+                document.getElementById('loadingOverlay').classList.add('hidden');
+                showAlert("Please solve the math problem correctly.", 'error');
                 return;
             }
 
@@ -292,24 +357,19 @@
 
                 if (!response.ok) {
                     const errorData = await response.json();
-                    // Handle specific error messages
-                    if (errorData.message && errorData.message.includes('already exists')) {
-                        alert(errorData.message);
-                    } else if (errorData.message) {
-                        alert(errorData.message);
-                    } else {
-                        throw new Error('Network response was not ok');
-                    }
+                    document.getElementById('loadingOverlay').classList.add('hidden');
+                    showAlert(errorData.message || 'Submission failed. Please try again.', 'error');
                     return;
                 }
 
                 const result = await response.json();
-                alert("Application submitted successfully!");
-                console.log("Server response:", result);
+                document.getElementById('loadingOverlay').classList.add('hidden');
+                showAlert("Application submitted successfully!");
                 document.getElementById("chefApplicationForm").reset();
             } catch (error) {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+                showAlert(error.message || "There was an error submitting your application. Please try again.", 'error');
                 console.error("Error submitting form:", error);
-                alert(error.message || "There was an error submitting your application. Please try again.");
             }
         });
 
@@ -351,5 +411,13 @@
     </div>
 
     <script src="cookies.js"></script>
+
+    <!-- Add loading overlay -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Add custom alert container -->
+    <div id="customAlertContainer" class="fixed top-4 right-4 space-y-2"></div>
 </body>
 </html>
