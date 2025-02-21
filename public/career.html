@@ -291,7 +291,15 @@
 
                 if (!response.ok) {
                     const errorData = await response.json();
-                    throw new Error(errorData.message || 'Network response was not ok');
+                    // Handle specific error messages
+                    if (errorData.message && errorData.message.includes('already exists')) {
+                        alert(errorData.message);
+                    } else if (errorData.message) {
+                        alert(errorData.message);
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                    return;
                 }
 
                 const result = await response.json();
@@ -300,7 +308,7 @@
                 document.getElementById("chefApplicationForm").reset();
             } catch (error) {
                 console.error("Error submitting form:", error);
-                alert("There was an error submitting your application. Please try again.");
+                alert(error.message || "There was an error submitting your application. Please try again.");
             }
         });
 
